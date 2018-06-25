@@ -1,0 +1,76 @@
+{
+  "DriverList": [
+    {
+      "id": {
+        "value": 123123,
+        "canWrite": true,
+        "canRead": true
+      },
+      "name": {
+        "value": "Василий ЛЕбедев",
+        "canWrite": true,
+        "canRead": true
+      },
+      "avatar": {
+        "value": "",
+        "canWrite": true,
+        "canRead": true
+      },
+      "phone": {
+        "value": "+79282341245",
+        "canWrite": true,
+        "canRead": true
+      },
+      "post": {
+        "value": "Водитель",
+        "canWrite": true,
+        "canRead": true
+      },
+      "department": {
+        "value": "Цех",
+        "canWrite": true,
+        "canRead": true
+      },
+      "generalContractor": {
+        "value": "Владимир Путин",
+        "canWrite": true,
+        "canRead": true
+      },
+      "company": {
+        "value": "Лукоил",
+        "canWrite": true,
+        "canRead": true
+      },
+      "lineManager": {
+        "value": "Леонид Чубайс",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverLicenseNumber": {
+        "value": "123544",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverLicenseDate": {
+        "value": "21.11.21",
+        "canWrite": true,
+        "canRead": true
+      },
+      "experience": {
+        "value": "3",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverLicenseCategory": {
+        "value": "A",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverTractLicenseCategory": {
+        "value": "C",
+        "canWrite": true,
+        "canRead": true
+      }
+    }
+  ]
+}
