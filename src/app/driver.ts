@@ -1,3 +1,6 @@
+export interface DriverList {
+  DriverList: Driver[];
+}
 export interface Driver {
   id: Wrapper;
   name:  Wrapper;
@@ -16,6 +19,6 @@ export interface Driver {
 }
 export interface Wrapper {
   value: string;
-  doWrite: boolean;
-  doRead: boolean;
+  canWrite: boolean;
+  canRead: boolean;
 }
