@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../base.service';
-import {ArrayWrapper, Driver, NumberWrapper, StringWrapper} from '../../driver';
+import {ArrayWrapper, Driver, NumberWrapper, StringWrapper, AutoCategory} from '../../driver';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -13,26 +13,29 @@ export class DriverComponent implements OnInit {
   public id: number;
   public driver: Driver;
   public error = false;
+  public autoCategory = AutoCategory;
   public controls = {
-    name: false,
-    phone: false,
-    post: false,
-    department: false,
-    generalContractor: false,
-    company: false,
-    lineManager: false,
-    driverLicenseNumber: false,
-    driverLicenseDate: false,
-    experience: false,
-    driverAutoLicenseCategory: false,
-    driverTractLicenseCategory: false
+    name: {name: 'Имя', show: false},
+    phone: {name: 'Телефон', show: false},
+    post: {name: 'Должность', show: false},
+    department: {name: 'Департамент', show: false},
+    generalContractor: {name: 'Генеральный', show: false},
+    company: {name: 'Компания', show: false},
+    lineManager: {name: 'Линейный руководитель', show: false},
+    driverLicenseNumber: {name: 'Номер в/у', show: false},
+    driverLicenseDate: {name: 'Дата', show: false},
+    experience: {name: 'Стаж', show: false},
+    driverAutoLicenseCategory: {name: 'Категория авто', show: false},
+    driverTractLicenseCategory: {name: 'Категория трактора', show: false}
   };
+  public controlsArray: string[];
   public driverForm: FormGroup;
 
   constructor(public activateRoute: ActivatedRoute,
               public router: Router,
               public base: BaseService) {
     this.id = this.activateRoute.snapshot.params['id'];
+    this.controlsArray = Object.keys(this.controls);
   }
 
   ngOnInit() {
@@ -42,17 +45,23 @@ export class DriverComponent implements OnInit {
         this.driver = res;
         this.driverForm = new FormGroup({
           'name': new FormControl(this.driver.name.value, Validators.required),
-          'phone': new FormControl(this.driver.phone.value),
-          'post': new FormControl(this.driver.post.value),
-          'department': new FormControl(this.driver.department.value),
-          'generalContractor': new FormControl(this.driver.generalContractor.value),
-          'company': new FormControl(this.driver.company.value),
-          'lineManager': new FormControl(this.driver.lineManager.value),
-          'driverLicenseNumber': new FormControl(this.driver.driverLicenseNumber.value),
-          'driverLicenseDate': new FormControl(this.driver.driverLicenseDate.value),
-          'experience': new FormControl(this.driver.experience.value),
-          'driverAutoLicenseCategory': new FormControl(this.driver.driverAutoLicenseCategory.value),
-          'driverTractLicenseCategory': new FormControl(this.driver.driverTractLicenseCategory.value)
+          'phone': new FormControl(this.driver.phone.value, [Validators.required,
+            Validators.pattern('[0-9]{10}'),
+            Validators.minLength(10),
+            Validators.maxLength(10)]),
+          'post': new FormControl(this.driver.post.value, [Validators.required]),
+          'department': new FormControl(this.driver.department.value, [Validators.required]),
+          'generalContractor': new FormControl(this.driver.generalContractor.value, [Validators.required]),
+          'company': new FormControl(this.driver.company.value, [Validators.required]),
+          'lineManager': new FormControl(this.driver.lineManager.value, [Validators.required]),
+          'driverLicenseNumber': new FormControl(this.driver.driverLicenseNumber.value, [Validators.required,
+            Validators.pattern('[А-Я0-9]{10}'),
+            Validators.minLength(10),
+            Validators.maxLength(10)]),
+          'driverLicenseDate': new FormControl(this.driver.driverLicenseDate.value, [Validators.required]),
+          'experience': new FormControl(this.driver.experience.value, [Validators.required]),
+          'driverAutoLicenseCategory': new FormControl(this.driver.driverAutoLicenseCategory.value, [Validators.required]),
+          'driverTractLicenseCategory': new FormControl(this.driver.driverTractLicenseCategory.value, [Validators.required])
         });
       },
       error => {
@@ -63,22 +72,41 @@ export class DriverComponent implements OnInit {
   }
 
   showControl(name: string) {
-    this.controls[name] = true;
+    for (const control in this.controls) {
+      this.cancel(control);
+    }
+    this.driverForm.controls[name].setValue(name === 'driverLicenseDate' ? new Date(this.driver[name].value).toISOString().substring(0, 10) : this.driver[name].value);
+    this.controls[name].show = true;
   }
 
   hideControl(name: string) {
-    this.controls[name] = false;
+    this.controls[name].show = false;
   }
 
   edit(name: string) {
-    // console.log(this.driver[name].value,this.driver[name].value)
-    this.driver[name].value = this.driverForm.controls[name].value;
-    this.hideControl(name);
+    this.base.updateItem(this.driver).subscribe(
+      res => {
+        this.driver[name].value = this.driverForm.controls[name].value;
+        this.driverForm.controls[name].reset();
+        this.hideControl(name);
+      }
+    );
   }
 
   cancel(name: string) {
-    this.driverForm.controls[name].setValue(this.driver[name].value);
     this.hideControl(name);
   }
 
+  typeOf(field: string): string {
+    return typeof field;
+  }
+
+  add(name: string) {
+
+  }
+
+  getCathegory(): Array<string> {
+    const keys = Object.keys(this.autoCategory);
+    return keys.slice(keys.length / 2);
+  }
 }
