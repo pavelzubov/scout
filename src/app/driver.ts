@@ -3,7 +3,7 @@ export interface DriverList {
 }
 
 export interface Driver {
-  id: Wrapper;
+  id: NumberWrapper;
   name: StringWrapper;
   avatar: StringWrapper;
   phone: StringWrapper;
@@ -15,8 +15,12 @@ export interface Driver {
   driverLicenseNumber: StringWrapper;
   driverLicenseDate: StringWrapper;
   experience: NumberWrapper;
-  driverAutoLicenseCategory: AutoCategory;
-  driverTractLicenseCategory: TractorCategory;
+  driverAutoLicenseCategory: ArrayWrapper;
+  driverTractLicenseCategory: ArrayWrapper;
+}
+
+export interface ArrayWrapper extends Wrapper {
+  value: Array<AutoCategory | TractorCategory>;
 }
 
 export interface StringWrapper extends Wrapper {

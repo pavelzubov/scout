@@ -2,37 +2,37 @@
   "DriverList": [
     {
       "id": {
-        "value": 123123,
+        "value": 123,
         "canWrite": true,
         "canRead": true
       },
       "name": {
-        "value": "Василий ЛЕбедев",
+        "value": "Василий Иванович Лебедев",
         "canWrite": true,
         "canRead": true
       },
       "avatar": {
-        "value": "",
+        "value": "https://pp.userapi.com/c629523/v629523692/12fb7/ph52WdGBsKo.jpg",
         "canWrite": true,
         "canRead": true
       },
       "phone": {
         "value": "+79282341245",
-        "canWrite": true,
-        "canRead": true
+        "canWrite": false,
+        "canRead": false
       },
       "post": {
         "value": "Водитель",
         "canWrite": true,
-        "canRead": true
+        "canRead": false
       },
       "department": {
-        "value": "Цех",
-        "canWrite": true,
+        "value": "Такси",
+        "canWrite": false,
         "canRead": true
       },
       "generalContractor": {
-        "value": "Владимир Путин",
+        "value": "Владимир Владимирович Путин",
         "canWrite": true,
         "canRead": true
       },
@@ -42,32 +42,104 @@
         "canRead": true
       },
       "lineManager": {
-        "value": "Леонид Чубайс",
-        "canWrite": true,
+        "value": "Анатолий Борисович Чубайс",
+        "canWrite": false,
         "canRead": true
       },
       "driverLicenseNumber": {
-        "value": "123544",
+        "value": "7716231566",
         "canWrite": true,
         "canRead": true
       },
       "driverLicenseDate": {
-        "value": "21.11.21",
+        "value": "Thu, 15 Jan 2025 00:00:00",
         "canWrite": true,
         "canRead": true
       },
       "experience": {
         "value": "3",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "driverAutoLicenseCategory": {
-        "value": "A",
+        "value": ["A","B"],
         "canWrite": true,
         "canRead": true
       },
       "driverTractLicenseCategory": {
-        "value": "C",
+        "value": ["C"],
+        "canWrite": true,
+        "canRead": true
+      }
+    },
+    {
+      "id": {
+        "value": 234,
+        "canWrite": true,
+        "canRead": true
+      },
+      "name": {
+        "value": "Брюс Константинович Уиллис",
+        "canWrite": false,
+        "canRead": true
+      },
+      "avatar": {
+        "value": "http://star-magazine.ru/wp-content/uploads/2017/06/0_11a4b6_a923e2c7_XL-404x600.jpg",
+        "canWrite": true,
+        "canRead": true
+      },
+      "phone": {
+        "value": "+79507895645",
+        "canWrite": true,
+        "canRead": true
+      },
+      "post": {
+        "value": "Водитель",
+        "canWrite": true,
+        "canRead": true
+      },
+      "department": {
+        "value": "Полиция",
+        "canWrite": false,
+        "canRead": true
+      },
+      "generalContractor": {
+        "value": "Джорж Иванович Буш",
+        "canWrite": true,
+        "canRead": true
+      },
+      "company": {
+        "value": "Полиция Нью-Йорка",
+        "canWrite": true,
+        "canRead": false
+      },
+      "lineManager": {
+        "value": "Билл Дмитриевч Гейтс",
+        "canWrite": false,
+        "canRead": true
+      },
+      "driverLicenseNumber": {
+        "value": "7763589345",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverLicenseDate": {
+        "value": "Thu, 21 Jan 2021 00:00:00",
+        "canWrite": true,
+        "canRead": true
+      },
+      "experience": {
+        "value": "15",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverAutoLicenseCategory": {
+        "value": ["A"],
+        "canWrite": false,
+        "canRead": true
+      },
+      "driverTractLicenseCategory": {
+        "value": [],
         "canWrite": true,
         "canRead": true
       }
