@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-driver',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./driver.component.css']
 })
 export class DriverComponent implements OnInit {
+  public id: number;
 
-  constructor() { }
+  constructor(private activateRoute: ActivatedRoute) {
+    this.id = this.activateRoute.snapshot.params['id'];
+  }
 
   ngOnInit() {
   }
