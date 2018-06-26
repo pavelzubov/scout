@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BaseService} from '../../base.service';
+import {Driver} from '../../driver';
 
 @Component({
   selector: 'app-drivers',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drivers.component.css']
 })
 export class DriversComponent implements OnInit {
+  public drivers: Driver[];
 
-  constructor() { }
+  constructor(public base: BaseService) {
+  }
 
   ngOnInit() {
+    this.base.getList().subscribe(res => {
+      this.drivers = res.DriverList;
+    });
   }
 
 }
