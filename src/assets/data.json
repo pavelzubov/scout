@@ -143,6 +143,78 @@
         "canWrite": true,
         "canRead": true
       }
+    },
+    {
+      "id": {
+        "value": 432,
+        "canWrite": true,
+        "canRead": true
+      },
+      "name": {
+        "value": "Илон Юрьевич Маск",
+        "canWrite": false,
+        "canRead": true
+      },
+      "avatar": {
+        "value": "https://econet.ru/uploads/pictures/307721/content_ilon-mask-0__econet_ru.jpg",
+        "canWrite": true,
+        "canRead": true
+      },
+      "phone": {
+        "value": "+79616783423",
+        "canWrite": true,
+        "canRead": true
+      },
+      "post": {
+        "value": "Водитель",
+        "canWrite": true,
+        "canRead": true
+      },
+      "department": {
+        "value": "Миллиция",
+        "canWrite": false,
+        "canRead": true
+      },
+      "generalContractor": {
+        "value": "Билл Генадьевич Клинтон",
+        "canWrite": true,
+        "canRead": true
+      },
+      "company": {
+        "value": "Завод Лермонтова",
+        "canWrite": true,
+        "canRead": false
+      },
+      "lineManager": {
+        "value": "Майк Захарович Тайсон",
+        "canWrite": false,
+        "canRead": true
+      },
+      "driverLicenseNumber": {
+        "value": "7745234123",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverLicenseDate": {
+        "value": "Thu, 03 Jan 2035 00:00:00",
+        "canWrite": true,
+        "canRead": true
+      },
+      "experience": {
+        "value": "24",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverAutoLicenseCategory": {
+        "value": ["A","C"],
+        "canWrite": false,
+        "canRead": true
+      },
+      "driverTractLicenseCategory": {
+        "value": ["C"],
+        "canWrite": true,
+        "canRead": true
+      }
     }
   ]
 }
