@@ -17,7 +17,7 @@
         "canRead": true
       },
       "phone": {
-        "value": "+79282341245",
+        "value": "9282341245",
         "canWrite": false,
         "canRead": false
       },
@@ -89,7 +89,7 @@
         "canRead": true
       },
       "phone": {
-        "value": "+79507895645",
+        "value": "9507895645",
         "canWrite": true,
         "canRead": true
       },
@@ -156,12 +156,12 @@
         "canRead": true
       },
       "avatar": {
-        "value": "https://econet.ru/uploads/pictures/307721/content_ilon-mask-0__econet_ru.jpg",
+        "value": "https://uznayvse.ru/images/thumb/elon-musk-foto-2.jpg",
         "canWrite": true,
         "canRead": true
       },
       "phone": {
-        "value": "+79616783423",
+        "value": "9616783423",
         "canWrite": true,
         "canRead": true
       },
@@ -171,7 +171,7 @@
         "canRead": true
       },
       "department": {
-        "value": "Миллиция",
+        "value": "",
         "canWrite": false,
         "canRead": true
       },
@@ -181,9 +181,9 @@
         "canRead": true
       },
       "company": {
-        "value": "Завод Лермонтова",
+        "value": "",
         "canWrite": true,
-        "canRead": false
+        "canRead": true
       },
       "lineManager": {
         "value": "Майк Захарович Тайсон",

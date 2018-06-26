@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {from, Observable, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {DriverList, Driver} from './driver';
 import {catchError} from 'rxjs/internal/operators';
@@ -34,4 +34,11 @@ export class BaseService {
       })
     );
   }
+
+  updateItem(item: Driver): Observable<any> {
+    return from(['true']).pipe(
+      map(res => 'Удачно')
+    );
+  }
+
 }
