@@ -1,5 +1,218 @@
-<p>
-  driver works!
-  this id {{id}}
-  his name {{driver?.name.value}}
-</p>
+<div class="error" *ngIf="error">
+  Такого водителя не существует. Вы будуте перенаправлены на страницу списка водителей
+</div>
+
+<div class="driver" *ngIf="!error">
+  <form *ngIf="driver" [formGroup]="driverForm">
+    <div class="avatar-container">
+      <img src="{{driver?.avatar.value}}" alt="" class="avatar">
+    </div>
+    <div class="line" *ngIf="driver?.name.canRead">
+      <div class="name">Имя
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['name']">
+          <a [routerLink]="" (click)="showControl('name')" *ngIf="driver?.name.canWrite">{{driver?.name.value}}</a>
+          <span *ngIf="!driver?.name.canWrite">{{driver?.name.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['name']">
+          <input type="text" formControlName="name">
+          <button (click)="edit('name')" [disabled]="!driverForm.controls['name'].dirty || driverForm.controls['name'].invalid">ок</button>
+          <button (click)="cancel('name')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.phone.canRead">
+      <div class="name">Телефон
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['phone']">
+          <a [routerLink]="" *ngIf="driver?.phone.canWrite" (click)="showControl('phone')">{{driver?.phone.value}}</a>
+          <span *ngIf="!driver?.phone.canWrite">{{driver?.phone.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['phone']">
+          <input type="text" formControlName="phone">
+          <button (click)="edit('phone')" [disabled]="!driverForm.controls['phone'].dirty || driverForm.controls['phone'].invalid">ок</button>
+          <button (click)="cancel('phone')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.post.canRead">
+      <div class="name">Должность
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['post']">
+          <a [routerLink]="" *ngIf="driver?.post.canWrite" (click)="showControl('post')">{{driver?.post.value}}</a>
+          <span *ngIf="!driver?.post.canWrite">{{driver?.post.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['post']">
+          <input type="text" formControlName="post">
+          <button (click)="edit('post')" [disabled]="!driverForm.controls['post'].dirty || driverForm.controls['post'].invalid">ок</button>
+          <button (click)="cancel('post')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.department.canRead">
+      <div class="name">Департамент
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['department']">
+          <a [routerLink]="" *ngIf="driver?.department.canWrite" (click)="showControl('department')">{{driver?.department.value}}</a>
+          <span *ngIf="!driver?.department.canWrite">{{driver?.department.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['department']">
+          <input type="text" formControlName="department">
+          <button (click)="edit('department')" [disabled]="!driverForm.controls['department'].dirty || driverForm.controls['department'].invalid">ок</button>
+          <button (click)="cancel('department')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.generalContractor.canRead">
+      <div class="name">Генеральный подрядчик
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['generalContractor']">
+          <a [routerLink]="" *ngIf="driver?.generalContractor.canWrite" (click)="showControl('generalContractor')">{{driver?.generalContractor.value}}</a>
+          <span *ngIf="!driver?.generalContractor.canWrite">{{driver?.generalContractor.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['generalContractor']">
+          <input type="text" formControlName="generalContractor">
+          <button (click)="edit('generalContractor')" [disabled]="!driverForm.controls['generalContractor'].dirty || driverForm.controls['generalContractor'].invalid">ок</button>
+          <button (click)="cancel('generalContractor')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.company.canRead">
+      <div class="name">Компания
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['company']">
+          <a [routerLink]="" *ngIf="driver?.company.canWrite" (click)="showControl('company')">{{driver?.company.value}}</a>
+          <span *ngIf="!driver?.company.canWrite">{{driver?.company.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['company']">
+          <input type="text" formControlName="company">
+          <button (click)="edit('company')" [disabled]="!driverForm.controls['company'].dirty || driverForm.controls['company'].invalid">ок</button>
+          <button (click)="cancel('company')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.lineManager.canRead">
+      <div class="name">Линейный менеджер
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['lineManager']">
+          <a [routerLink]="" *ngIf="driver?.lineManager.canWrite" (click)="showControl('lineManager')">{{driver?.lineManager.value}}</a>
+          <span *ngIf="!driver?.lineManager.canWrite">{{driver?.lineManager.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['lineManager']">
+          <input type="text" formControlName="lineManager">
+          <button (click)="edit('lineManager')" [disabled]="!driverForm.controls['lineManager'].dirty || driverForm.controls['lineManager'].invalid">ок</button>
+          <button (click)="cancel('lineManager')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.driverLicenseNumber.canRead">
+      <div class="name">Номер в/у
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['driverLicenseNumber']">
+          <a [routerLink]="" *ngIf="driver?.driverLicenseNumber.canWrite"
+             (click)="showControl('driverLicenseNumber')">{{driver?.driverLicenseNumber.value}}</a>
+          <span *ngIf="!driver?.driverLicenseNumber.canWrite">{{driver?.driverLicenseNumber.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['driverLicenseNumber']">
+          <input type="number" formControlName="driverLicenseNumber">
+          <button (click)="edit('driverLicenseNumber')" [disabled]="!driverForm.controls['driverLicenseNumber'].dirty || driverForm.controls['driverLicenseNumber'].invalid">ок</button>
+          <button (click)="cancel('driverLicenseNumber')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.driverLicenseDate.canRead">
+      <div class="name">Дата окончания срока действия в/у
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['driverLicenseDate']">
+          <a [routerLink]="" *ngIf="driver?.driverLicenseDate.canWrite" (click)="showControl('driverLicenseDate')">{{driver?.driverLicenseDate.value
+            | date:
+            'dd:MM:yy'}}</a>
+          <span
+            *ngIf="!driver?.driverLicenseDate.canWrite">{{driver?.driverLicenseDate.value | date: 'dd:MM:yy'}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['driverLicenseDate']">
+          <input type="date" formControlName="driverLicenseDate">
+          <button (click)="edit('driverLicenseDate')" [disabled]="!driverForm.controls['driverLicenseDate'].dirty || driverForm.controls['driverLicenseDate'].invalid">ок</button>
+          <button (click)="cancel('driverLicenseDate')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.experience.canRead">
+      <div class="name">Водительский стаж
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['experience']">
+          <a [routerLink]="" *ngIf="driver?.experience.canWrite" (click)="showControl('experience')">{{driver?.experience.value}}</a>
+          <span *ngIf="!driver?.experience.canWrite">{{driver?.experience.value}}</span>
+        </div>
+        <div class="controls" *ngIf="controls['experience']">
+          <input type="number" formControlName="experience">
+          <button (click)="edit('experience')" [disabled]="!driverForm.controls['experience'].dirty || driverForm.controls['experience'].invalid">ок</button>
+          <button (click)="cancel('experience')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.driverAutoLicenseCategory.canRead">
+      <div class="name">
+        Категория в/у
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['driverAutoLicenseCategory']">
+          <a [routerLink]="" *ngIf="driver?.driverAutoLicenseCategory.canWrite"
+             (click)="showControl('driverAutoLicenseCategory')">
+          <span *ngFor="let category of driver?.driverAutoLicenseCategory.value; index as i">{{category}}
+            <span *ngIf="i!==driver?.driverAutoLicenseCategory.value.length-1">, </span></span>
+          </a>
+          <span *ngIf="!driver?.driverAutoLicenseCategory.canWrite">
+          <span *ngFor="let category of driver?.driverAutoLicenseCategory.value; index as i">{{category}}
+            <span *ngIf="i!==driver?.driverAutoLicenseCategory.value.length-1">, </span></span>
+          </span>
+        </div>
+        <div class="controls" *ngIf="controls['driverAutoLicenseCategory']">
+          <select formControlName="driverAutoLicenseCategory">
+            <option value="A"></option>
+            <option value="B"></option>
+          </select>
+          <button (click)="edit('driverAutoLicenseCategory')" [disabled]="!driverForm.controls['driverAutoLicenseCategory'].dirty || driverForm.controls['driverAutoLicenseCategory'].invalid">ок</button>
+          <button (click)="cancel('driverAutoLicenseCategory')" >х</button>
+        </div>
+      </div>
+    </div>
+    <div class="line" *ngIf="driver?.driverTractLicenseCategory.canRead">
+      <div class="name">Категория в/у Трактора
+      </div>
+      <div class="value">
+        <div class="placeholder" *ngIf="!controls['driverTractLicenseCategory']">
+          <a [routerLink]="" *ngIf="driver?.driverTractLicenseCategory.canWrite"
+             (click)="showControl('driverTractLicenseCategory')">
+            <span *ngFor="let category of driver?.driverTractLicenseCategory.value; index as i">{{category}}
+            <span *ngIf="i!==driver?.driverTractLicenseCategory.value.length-1">, </span>
+            </span>
+          </a>
+          <span *ngIf="!driver?.driverTractLicenseCategory.canWrite">
+            <span *ngFor="let category of driver?.driverTractLicenseCategory.value; index as i">{{category}}
+            <span *ngIf="i!==driver?.driverTractLicenseCategory.value.length-1">, </span>
+            </span>
+          </span>
+        </div>
+        <div class="controls" *ngIf="controls['driverTractLicenseCategory']">
+          <select formControlName="driverTractLicenseCategory">
+            <option value="A"></option>
+            <option value="B"></option>
+          </select>
+          <button (click)="edit('driverTractLicenseCategory')" [disabled]="!driverForm.controls['driverTractLicenseCategory'].dirty || driverForm.controls['driverTractLicenseCategory'].invalid">ок</button>
+          <button (click)="cancel('driverTractLicenseCategory')" >х</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
