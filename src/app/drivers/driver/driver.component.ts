@@ -11,6 +11,7 @@ import {Driver} from '../../driver';
 export class DriverComponent implements OnInit {
   public id: number;
   public driver: Driver;
+  public error = false;
 
   constructor(public activateRoute: ActivatedRoute,
               public router: Router,
@@ -25,8 +26,9 @@ export class DriverComponent implements OnInit {
         this.driver = res;
       },
       error => {
-        console.log(error);
-        this.router.navigate(['']);
+        console.log('error', error);
+        this.error = true;
+        setTimeout(() => this.router.navigate(['']), 5 * 1000);
       });
   }
 
