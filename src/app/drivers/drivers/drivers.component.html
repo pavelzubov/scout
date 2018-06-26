@@ -1,3 +1,29 @@
-<p>
-  drivers works!
-</p>
+<table>
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Должность</th>
+    <th>Телефон</th>
+    <th>Компания</th>
+    <th>Имя линейного руководителя</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let driver of drivers">
+    <td><a routerLink="{{driver.id.value}}">{{driver.name.value}}</a></td>
+    <td>
+      {{driver.post.canRead? driver.post.value : '---'}}
+    </td>
+    <td>
+      {{driver.phone.canRead? driver.phone.value : '---'}}
+    </td>
+    <td>
+      {{driver.company.canRead? driver.company.value : '---'}}
+    </td>
+    <td>
+      {{driver.lineManager.canRead? driver.lineManager.value : '---'}}
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="load" *ngIf="!drivers?.length">Загрузка</div>
