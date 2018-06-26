@@ -61,7 +61,7 @@
         "canWrite": true,
         "canRead": true
       },
-      "driverLicenseCategory": {
+      "driverAutoLicenseCategory": {
         "value": "A",
         "canWrite": true,
         "canRead": true
