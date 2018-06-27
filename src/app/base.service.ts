@@ -52,6 +52,8 @@ export class BaseService {
         this.getList().subscribe(res => {
           this.getItem(id).subscribe(resl => {
             resolve(<Driver>resl);
+          }, error => {
+            reject(error);
           });
         });
       }
