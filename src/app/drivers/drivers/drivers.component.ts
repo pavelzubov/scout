@@ -5,7 +5,7 @@ import {Driver} from '../../driver';
 @Component({
   selector: 'app-drivers',
   templateUrl: './drivers.component.html',
-  styleUrls: ['./drivers.component.css']
+  styleUrls: ['./drivers.component.sass']
 })
 export class DriversComponent implements OnInit {
   public drivers: Driver[];
