@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../base.service';
-import {ArrayWrapper, Driver, NumberWrapper, StringWrapper, AutoCategory} from '../../driver';
+import {Driver, AutoCategory, TractorCategory} from '../../driver';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -14,6 +14,7 @@ export class DriverComponent implements OnInit {
   public driver: Driver;
   public error = false;
   public autoCategory = AutoCategory;
+  public tractorCategory = TractorCategory;
   public controls = {
     phone: {name: 'Номер телефона', show: false},
     post: {name: 'Должность', show: false},
@@ -107,11 +108,11 @@ export class DriverComponent implements OnInit {
   }
 
   add(name: string) {
-   this.showControl(name);
+    this.showControl(name);
   }
 
-  getCathegory(): Array<string> {
-    const keys = Object.keys(this.autoCategory);
+  getCathegory(field: string): Array<string> {
+    const keys = Object.keys(field === 'driverAutoLicenseCategory' ? this.autoCategory : this.tractorCategory);
     return keys.slice(keys.length / 2);
   }
 }

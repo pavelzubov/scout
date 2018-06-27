@@ -76,7 +76,7 @@
               <select size="4" class="cstom-select" formControlName="{{field}}"
                       *ngIf="typeOf(driver[field].value)==='object'"
                       multiple>
-                <option value="{{category}}" *ngFor="let category of getCathegory()">{{category}}</option>
+                <option value="{{category}}" *ngFor="let category of getCathegory(field)">{{category}}</option>
               </select>
               <input *ngIf="field==='driverLicenseDate'"
                      type="text"

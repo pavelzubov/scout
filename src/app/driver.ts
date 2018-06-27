@@ -45,5 +45,5 @@ export enum AutoCategory {
 }
 
 export enum TractorCategory {
-  A, B, C, D, E
+  'A', 'A1', 'A2', 'A3', 'A4', 'B', 'C', 'D', 'E', 'F'
 }
