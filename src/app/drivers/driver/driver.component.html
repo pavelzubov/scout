@@ -1,11 +1,11 @@
 <div class="flex-container">
   <div class="row back cell">
     <div class="col-12"><a routerLink="../">
-      <i class="material-icons">keyboard_backspace</i> Назад</a>
+      <i class="material-icons">keyboard_arrow_left</i> <span>Назад</span></a>
     </div>
   </div>
-  <div class="error row" *ngIf="error">
-    <div class="col-12">Такого водителя не существует. Вы будуте перенаправлены на страницу списка водителей</div>
+  <div class="error row justify-content-center" *ngIf="error">
+    <div class="col-8">Такого водителя не существует. Вы будуте перенаправлены на страницу списка водителей.</div>
   </div>
 
   <div class="driver row justify-content-center" *ngIf="!error">
@@ -95,6 +95,8 @@
                      class="custom-input"
                      formControlName="{{field}}">
               <input type="text"
+                     popover="{{controls[field].popover}}"
+                     triggers="keyup:blur"
                      size="10"
                      class="custom-input"
                      formControlName="{{field}}"

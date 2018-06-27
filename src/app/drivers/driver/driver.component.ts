@@ -16,17 +16,17 @@ export class DriverComponent implements OnInit {
   public autoCategory = AutoCategory;
   public tractorCategory = TractorCategory;
   public controls = {
-    phone: {name: 'Номер телефона', show: false},
-    post: {name: 'Должность', show: false},
-    department: {name: 'Департамент', show: false},
-    generalContractor: {name: 'Ген.подрядчик', show: false},
-    company: {name: 'Компания', show: false},
-    lineManager: {name: 'Линейный руководитель', show: false},
-    driverLicenseNumber: {name: 'Номер в/у', show: false},
-    driverLicenseDate: {name: 'Дата окончания срока действия в/у', show: false},
-    experience: {name: 'Водительский стаж', show: false},
-    driverAutoLicenseCategory: {name: 'Категория в/у', show: false},
-    driverTractLicenseCategory: {name: 'Категория машиниста-тракториста', show: false}
+    phone: {name: 'Номер телефона', show: false, popover: '10 цифр без кода страны'},
+    post: {name: 'Должность', show: false, popover: ''},
+    department: {name: 'Департамент', show: false, popover: ''},
+    generalContractor: {name: 'Ген.подрядчик', show: false, popover: ''},
+    company: {name: 'Компания', show: false, popover: ''},
+    lineManager: {name: 'Линейный руководитель', show: false, popover: ''},
+    driverLicenseNumber: {name: 'Номер в/у', show: false, popover: '10 цифр и заглавных русских букв'},
+    driverLicenseDate: {name: 'Дата окончания срока действия в/у', show: false, popover: ''},
+    experience: {name: 'Водительский стаж', show: false, popover: ''},
+    driverAutoLicenseCategory: {name: 'Категория в/у', show: false, popover: ''},
+    driverTractLicenseCategory: {name: 'Категория машиниста-тракториста', show: false, popover: ''}
   };
   public controlsArray: string[];
   public driverForm: FormGroup;
