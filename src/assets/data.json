@@ -3,28 +3,28 @@
     {
       "id": {
         "value": 123,
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "name": {
         "value": "Василий Иванович Лебедев",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "avatar": {
         "value": "https://pp.userapi.com/c629523/v629523692/12fb7/ph52WdGBsKo.jpg",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "phone": {
         "value": "9282341245",
-        "canWrite": false,
-        "canRead": false
+        "canWrite": true,
+        "canRead": true
       },
       "post": {
         "value": "Водитель",
-        "canWrite": true,
-        "canRead": false
+        "canWrite": false,
+        "canRead": true
       },
       "department": {
         "value": "Такси",
@@ -33,12 +33,12 @@
       },
       "generalContractor": {
         "value": "Владимир Владимирович Путин",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "company": {
         "value": "Лукоил",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "lineManager": {
@@ -58,7 +58,7 @@
       },
       "experience": {
         "value": "3",
-        "canWrite": false,
+        "canWrite": true,
         "canRead": true
       },
       "driverAutoLicenseCategory": {
@@ -68,14 +68,14 @@
       },
       "driverTractLicenseCategory": {
         "value": ["C"],
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       }
     },
     {
       "id": {
         "value": 234,
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "name": {
@@ -85,7 +85,7 @@
       },
       "avatar": {
         "value": "http://star-magazine.ru/wp-content/uploads/2017/06/0_11a4b6_a923e2c7_XL-404x600.jpg",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "phone": {
@@ -95,7 +95,7 @@
       },
       "post": {
         "value": "Водитель",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "department": {
@@ -105,16 +105,16 @@
       },
       "generalContractor": {
         "value": "Джорж Иванович Буш",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "company": {
         "value": "Полиция Нью-Йорка",
-        "canWrite": true,
-        "canRead": false
+        "canWrite": false,
+        "canRead": true
       },
       "lineManager": {
-        "value": "Билл Дмитриевч Гейтс",
+        "value": "Билл Дмитриевич Гейтс",
         "canWrite": false,
         "canRead": true
       },
@@ -135,19 +135,19 @@
       },
       "driverAutoLicenseCategory": {
         "value": ["A"],
-        "canWrite": false,
+        "canWrite": true,
         "canRead": true
       },
       "driverTractLicenseCategory": {
         "value": [],
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       }
     },
     {
       "id": {
         "value": 432,
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "name": {
@@ -157,7 +157,7 @@
       },
       "avatar": {
         "value": "https://uznayvse.ru/images/thumb/elon-musk-foto-2.jpg",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "phone": {
@@ -167,7 +167,7 @@
       },
       "post": {
         "value": "Водитель",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "department": {
@@ -177,12 +177,12 @@
       },
       "generalContractor": {
         "value": "Билл Генадьевич Клинтон",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "company": {
         "value": "",
-        "canWrite": true,
+        "canWrite": false,
         "canRead": true
       },
       "lineManager": {
@@ -207,12 +207,84 @@
       },
       "driverAutoLicenseCategory": {
         "value": ["A","C"],
-        "canWrite": false,
+        "canWrite": true,
         "canRead": true
       },
       "driverTractLicenseCategory": {
         "value": ["C"],
+        "canWrite": false,
+        "canRead": true
+      }
+    },
+    {
+      "id": {
+        "value": 345,
+        "canWrite": false,
+        "canRead": true
+      },
+      "name": {
+        "value": "Уилл Аркадьевич Смитт",
+        "canWrite": false,
+        "canRead": true
+      },
+      "avatar": {
+        "value": "https://www.film.ru/sites/default/files/styles/epsa_260x320/public/people/1459460-876921.jpg",
+        "canWrite": false,
+        "canRead": true
+      },
+      "phone": {
+        "value": "9067894512",
         "canWrite": true,
+        "canRead": true
+      },
+      "post": {
+        "value": "Гонщик",
+        "canWrite": false,
+        "canRead": true
+      },
+      "department": {
+        "value": "Главный",
+        "canWrite": false,
+        "canRead": true
+      },
+      "generalContractor": {
+        "value": "ПБ",
+        "canWrite": false,
+        "canRead": true
+      },
+      "company": {
+        "value": "ООО 'Полесье'",
+        "canWrite": false,
+        "canRead": true
+      },
+      "lineManager": {
+        "value": "Конор Игоревич Макгрегор",
+        "canWrite": false,
+        "canRead": true
+      },
+      "driverLicenseNumber": {
+        "value": "",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverLicenseDate": {
+        "value": "Thu, 19 Nov 2025 00:00:00",
+        "canWrite": true,
+        "canRead": true
+      },
+      "experience": {
+        "value": "16",
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverAutoLicenseCategory": {
+        "value": ["A","C","D","D1E"],
+        "canWrite": true,
+        "canRead": true
+      },
+      "driverTractLicenseCategory": {
+        "value": ["C"],
+        "canWrite": false,
         "canRead": true
       }
     }
