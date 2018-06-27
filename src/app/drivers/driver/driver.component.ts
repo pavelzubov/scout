@@ -23,10 +23,10 @@ export class DriverComponent implements OnInit {
     company: {name: 'Компания', show: false},
     lineManager: {name: 'Линейный руководитель', show: false},
     driverLicenseNumber: {name: 'Номер в/у', show: false},
-    driverLicenseDate: {name: 'Дата', show: false},
-    experience: {name: 'Стаж', show: false},
-    driverAutoLicenseCategory: {name: 'Категория авто', show: false},
-    driverTractLicenseCategory: {name: 'Категория трактора', show: false}
+    driverLicenseDate: {name: 'Дата окончания срока действия в/у', show: false},
+    experience: {name: 'Водительский стаж', show: false},
+    driverAutoLicenseCategory: {name: 'Категория в/у', show: false},
+    driverTractLicenseCategory: {name: 'Категория машиниста-тракториста', show: false}
   };
   public controlsArray: string[];
   public driverForm: FormGroup;
