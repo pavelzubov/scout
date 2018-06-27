@@ -40,8 +40,8 @@
           <div class="cell values col-6">
             <div class="value">
               <div class="add" *ngIf="!driver[field].value && !controls[field].show">
-                <button class="add-button custom-button" *ngIf="driver[field].canWrite" (click)="add(field)">Добавить
-                </button>
+                <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="add(field)">Добавить
+                </a>
                 <ng-container *ngIf="!driver[field].canWrite">-</ng-container>
               </div>
               <div class="placeholder" *ngIf="!controls[field].show && driver[field].value">
