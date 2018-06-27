@@ -56,11 +56,13 @@
                 <ng-container *ngIf="typeOf(driver[field].value)==='object'">
                   <a [routerLink]="" *ngIf="driver[field].canWrite"
                      (click)="showControl(field)">
-                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}<ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
+                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
+                      <ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
                     </ng-container>
                   </a>
                   <ng-container *ngIf="!driver[field].canWrite">
-                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}<ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
+                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
+                      <ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
                     </ng-container>
                   </ng-container>
                 </ng-container>
@@ -85,7 +87,8 @@
                      placeholder="Дата"
                      class="custom-input" experience
                      [minDate]="minDate"
-                     [bsConfig]="{ dateInputFormat: 'DD.MM.YY' }"
+                     placement="left"
+                     [bsConfig]="{ dateInputFormat: 'DD.MM.YY', containerClass:'theme-dark-blue' }"
                      bsDatepicker>
               <input *ngIf="field==='experience'"
                      type="number"
