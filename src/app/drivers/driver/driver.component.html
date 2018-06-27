@@ -9,7 +9,8 @@
   </div>
 
   <div class="driver row justify-content-center" *ngIf="!error">
-    <form [formGroup]="driverForm" class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12 row justify-content-center" *ngIf="driver">
+    <form [formGroup]="driverForm" class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12 row justify-content-center"
+          *ngIf="driver">
       <div class="col-12 row justify-content-center">
         <div class="cell">
           <div class="avatar-container">
@@ -30,18 +31,20 @@
       <div *ngFor="let field of controlsArray" class="line col-12 row">
 
         <!-- Добавялем пукнктируную линию перед номером в/у-->
-        <div class="cell col-12" *ngIf="field==='driverLicenseNumber'"><div class="separator"></div></div>
+        <div class="cell col-12" *ngIf="field==='driverLicenseNumber'">
+          <div class="separator"></div>
+        </div>
         <ng-container *ngIf="driver[field].canRead">
           <div class="cell name col-6"><b>{{controls[field].name}}</b>
           </div>
           <div class="cell values col-6">
             <div class="value">
-              <div class="add" *ngIf="!driver[field].value && controls[field].show">
-                <button class="add-button form-control" *ngIf="driver[field].canWrite" (click)="add('field')">Добавить
+              <div class="add" *ngIf="!driver[field].value && !controls[field].show">
+                <button class="add-button custom-button" *ngIf="driver[field].canWrite" (click)="add(field)">Добавить
                 </button>
                 <ng-container *ngIf="!driver[field].canWrite">-</ng-container>
               </div>
-              <div class="placeholder" *ngIf="!controls[field].show">
+              <div class="placeholder" *ngIf="!controls[field].show && driver[field].value">
                 <ng-container *ngIf="field==='driverLicenseDate'">
                   <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="showControl(field)">{{driver[field].value |
                     date: 'dd.MM.yy'}}</a>
@@ -53,13 +56,11 @@
                 <ng-container *ngIf="typeOf(driver[field].value)==='object'">
                   <a [routerLink]="" *ngIf="driver[field].canWrite"
                      (click)="showControl(field)">
-                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
-                      <ng-container *ngIf="i!==driver[field].value.length-1">,</ng-container>
+                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}<ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
                     </ng-container>
                   </a>
                   <ng-container *ngIf="!driver[field].canWrite">
-                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
-                      <ng-container *ngIf="i!==driver[field].value.length-1">,</ng-container>
+                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}<ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
                     </ng-container>
                   </ng-container>
                 </ng-container>
@@ -72,7 +73,8 @@
               </div>
             </div>
             <div class="controls " *ngIf="controls[field].show">
-              <select size="4" class="cstom-select" formControlName="{{field}}" *ngIf="typeOf(driver[field].value)==='object'"
+              <select size="4" class="cstom-select" formControlName="{{field}}"
+                      *ngIf="typeOf(driver[field].value)==='object'"
                       multiple>
                 <option value="{{category}}" *ngFor="let category of getCathegory()">{{category}}</option>
               </select>
@@ -81,7 +83,7 @@
                      size="9"
                      formControlName="{{field}}"
                      placeholder="Дата"
-                     class="custom-input"experience
+                     class="custom-input" experience
                      [minDate]="minDate"
                      [bsConfig]="{ dateInputFormat: 'DD.MM.YY' }"
                      bsDatepicker>

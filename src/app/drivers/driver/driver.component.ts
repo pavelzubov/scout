@@ -107,7 +107,7 @@ export class DriverComponent implements OnInit {
   }
 
   add(name: string) {
-
+   this.showControl(name);
   }
 
   getCathegory(): Array<string> {
