@@ -15,11 +15,10 @@ export class DriverComponent implements OnInit {
   public error = false;
   public autoCategory = AutoCategory;
   public controls = {
-    name: {name: 'Имя', show: false},
-    phone: {name: 'Телефон', show: false},
+    phone: {name: 'Номер телефона', show: false},
     post: {name: 'Должность', show: false},
     department: {name: 'Департамент', show: false},
-    generalContractor: {name: 'Генеральный', show: false},
+    generalContractor: {name: 'Ген.подрядчик', show: false},
     company: {name: 'Компания', show: false},
     lineManager: {name: 'Линейный руководитель', show: false},
     driverLicenseNumber: {name: 'Номер в/у', show: false},
@@ -30,6 +29,7 @@ export class DriverComponent implements OnInit {
   };
   public controlsArray: string[];
   public driverForm: FormGroup;
+  public minDate = new Date();
 
   constructor(public activateRoute: ActivatedRoute,
               public router: Router,
@@ -44,7 +44,7 @@ export class DriverComponent implements OnInit {
         console.log(res);
         this.driver = res;
         this.driverForm = new FormGroup({
-          'name': new FormControl(this.driver.name.value, Validators.required),
+          // 'name': new FormControl(this.driver.name.value, Validators.required),
           'phone': new FormControl(this.driver.phone.value, [Validators.required,
             Validators.pattern('[0-9]{10}'),
             Validators.minLength(10),
@@ -75,18 +75,23 @@ export class DriverComponent implements OnInit {
     for (const control in this.controls) {
       this.cancel(control);
     }
-    this.driverForm.controls[name].setValue(name === 'driverLicenseDate' ? new Date(this.driver[name].value).toISOString().substring(0, 10) : this.driver[name].value);
+    this.driverForm.controls[name].setValue(name === 'driverLicenseDate' ? new Date(this.driver[name].value) : this.driver[name].value);
     this.controls[name].show = true;
   }
 
   hideControl(name: string) {
     this.controls[name].show = false;
+    this.driverForm.controls[name].reset();
   }
 
   edit(name: string) {
-    this.base.updateItem(this.driver).subscribe(
-      res => {
-        this.driver[name].value = this.driverForm.controls[name].value;
+    if (name === 'driverLicenseDate') {
+      this.driver[name].value = new Date(this.driverForm.controls[name].value).toISOString();
+    } else {
+      this.driver[name].value = this.driverForm.controls[name].value;
+    }
+    this.base.updateItem(this.driver).subscribe(res => {
+        console.log(res);
         this.driverForm.controls[name].reset();
         this.hideControl(name);
       }
