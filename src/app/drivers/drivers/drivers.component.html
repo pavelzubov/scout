@@ -1,29 +1,41 @@
-<table>
-  <thead>
-  <tr>
-    <th>Имя</th>
-    <th>Должность</th>
-    <th>Телефон</th>
-    <th>Компания</th>
-    <th>Имя линейного руководителя</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let driver of drivers">
-    <td><a routerLink="{{driver.id.value}}">{{driver.name.value}}</a></td>
-    <td>
-      {{driver.post.canRead? driver.post.value : '---'}}
-    </td>
-    <td>
-      {{driver.phone.canRead? driver.phone.value : '---'}}
-    </td>
-    <td>
-      {{driver.company.canRead? driver.company.value : '---'}}
-    </td>
-    <td>
-      {{driver.lineManager.canRead? driver.lineManager.value : '---'}}
-    </td>
-  </tr>
-  </tbody>
-</table>
-<div class="load" *ngIf="!drivers?.length">Загрузка</div>
+<div class="flex-container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-12 row">
+      <div class="title col-12 left">
+        <h4>Водители</h4>
+      </div>
+      <div class="table-div col-12">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Должность</th>
+            <th>Телефон</th>
+            <th>Компания</th>
+            <th>Имя линейного руководителя</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let driver of drivers">
+            <td><a routerLink="{{driver.id.value}}">{{driver.name.value}}</a></td>
+            <td>
+              {{driver.post.canRead? driver.post.value : '---'}}
+            </td>
+            <td>
+              {{driver.phone.canRead? driver.phone.value : '---'}}
+            </td>
+            <td>
+              {{driver.company.canRead? driver.company.value : '---'}}
+            </td>
+            <td>
+              {{driver.lineManager.canRead? driver.lineManager.value : '---'}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="load" *ngIf="!drivers?.length">Загрузка</div>
+      </div>
+    </div>
+  </div>
+</div>
+
