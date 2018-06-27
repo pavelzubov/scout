@@ -15,6 +15,8 @@ export class DriverComponent implements OnInit {
   public error = false;
   public autoCategory = AutoCategory;
   public tractorCategory = TractorCategory;
+  // Объект для конфигурирования инпутов
+  // Содержит имя, переключатель отображения и текст подсказки
   public controls = {
     phone: {name: 'Номер телефона', show: false, popover: '10 цифр без кода страны'},
     post: {name: 'Должность', show: false, popover: ''},
@@ -36,16 +38,19 @@ export class DriverComponent implements OnInit {
               public router: Router,
               public base: BaseService) {
     this.id = this.activateRoute.snapshot.params['id'];
+    // Для того чтобы пройтись по полям
+    // и сделать форму перегоняем ключи controls в массив
     this.controlsArray = Object.keys(this.controls);
   }
 
   ngOnInit() {
+    // Забираем данные по водителю
+    // и после загрузки выставляем значения в реактивную форму
     this.base.getItem(+this.id).subscribe(
       res => {
         console.log(res);
         this.driver = res;
         this.driverForm = new FormGroup({
-          // 'name': new FormControl(this.driver.name.value, Validators.required),
           'phone': new FormControl(this.driver.phone.value, [Validators.required,
             Validators.pattern('[0-9]{10}'),
             Validators.minLength(10),
@@ -66,6 +71,7 @@ export class DriverComponent implements OnInit {
         });
       },
       error => {
+        // Тут показываем ошибку и через пять секунд переводим на список
         console.log(error);
         this.error = true;
         setTimeout(() => this.router.navigate(['']), 5 * 1000);
@@ -73,9 +79,12 @@ export class DriverComponent implements OnInit {
   }
 
   showControl(name: string) {
+    // Скрываем контролы
     for (const control in this.controls) {
       this.cancel(control);
     }
+    // Костыль для даты
+    // для неё создаем объект даты из iso-строки
     this.driverForm.controls[name].setValue(name === 'driverLicenseDate' ? new Date(this.driver[name].value) : this.driver[name].value);
     this.controls[name].show = true;
   }
@@ -86,6 +95,8 @@ export class DriverComponent implements OnInit {
   }
 
   edit(name: string) {
+    // Еще один костыль для даты.
+    // Перегоняем её в iso-строку перед сохранением в базу
     if (name === 'driverLicenseDate') {
       this.driver[name].value = new Date(this.driverForm.controls[name].value).toISOString();
     } else {
@@ -104,6 +115,8 @@ export class DriverComponent implements OnInit {
   }
 
   typeOf(field: string): string {
+    // Эта фукнция нужна, чтобы при формировании формы
+    // узнавать массивы и для них делать селекты
     return typeof field;
   }
 
@@ -111,7 +124,9 @@ export class DriverComponent implements OnInit {
     this.showControl(name);
   }
 
-  getCathegory(field: string): Array<string> {
+  getCategory(field: string): Array<string> {
+    // Эта функция позволяет из enum-перечисления сделать массив
+    // Потом этот массив загоняется в селект
     const keys = Object.keys(field === 'driverAutoLicenseCategory' ? this.autoCategory : this.tractorCategory);
     return keys.slice(keys.length / 2);
   }

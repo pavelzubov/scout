@@ -19,16 +19,16 @@
           <tr *ngFor="let driver of drivers">
             <td><a routerLink="{{driver.id.value}}">{{driver.name.value}}</a></td>
             <td>
-              {{driver.post.canRead? driver.post.value : '---'}}
+              {{driver.post.canRead? driver.post.value || '—'  : '—'}}
             </td>
             <td>
-              {{driver.phone.canRead? driver.phone.value : '---'}}
+              {{driver.phone.canRead? driver.phone.value || '—'  : '—'}}
             </td>
             <td>
-              {{driver.company.canRead? driver.company.value : '---'}}
+              {{driver.company.canRead? driver.company.value || '—' : '—'}}
             </td>
             <td>
-              {{driver.lineManager.canRead? driver.lineManager.value : '---'}}
+              {{driver.lineManager.canRead? driver.lineManager.value || '—'  : '—'}}
             </td>
           </tr>
           </tbody>

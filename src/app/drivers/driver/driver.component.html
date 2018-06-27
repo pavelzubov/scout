@@ -35,16 +35,20 @@
           <div class="separator"></div>
         </div>
         <ng-container *ngIf="driver[field].canRead">
+          <!-- Название контрола-->
           <div class="cell name col-6"><b>{{controls[field].name}}</b>
           </div>
           <div class="cell values col-6">
             <div class="value">
+              <!--Кнопка добавления в случае отсутствия-->
               <div class="add" *ngIf="!driver[field].value && !controls[field].show">
                 <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="add(field)">Добавить
                 </a>
                 <ng-container *ngIf="!driver[field].canWrite">-</ng-container>
               </div>
+              <!--Текстовый вариант значения-->
               <div class="placeholder" *ngIf="!controls[field].show && driver[field].value">
+                <!--Для даты-->
                 <ng-container *ngIf="field==='driverLicenseDate'">
                   <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="showControl(field)">{{driver[field].value |
                     date: 'dd.MM.yy'}}</a>
@@ -52,7 +56,7 @@
                     *ngIf="!driver[field].canWrite">{{driver[field].value | date: 'dd.MM.yy'}}
                   </ng-container>
                 </ng-container>
-
+                <!--Для категорий-->
                 <ng-container *ngIf="typeOf(driver[field].value)==='object'">
                   <a [routerLink]="" *ngIf="driver[field].canWrite"
                      (click)="showControl(field)">
@@ -66,7 +70,7 @@
                     </ng-container>
                   </ng-container>
                 </ng-container>
-
+                <!--Для остального-->
                 <ng-container *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate'">
                   <a [routerLink]="" (click)="showControl(field)"
                      *ngIf="driver[field].canWrite">{{driver[field].value}}</a>
@@ -74,12 +78,15 @@
                 </ng-container>
               </div>
             </div>
+            <!--Инпутный вариант значения-->
             <div class="controls " *ngIf="controls[field].show">
+              <!--Для категорий-->
               <select size="4" class="cstom-select" formControlName="{{field}}"
                       *ngIf="typeOf(driver[field].value)==='object'"
                       multiple>
-                <option value="{{category}}" *ngFor="let category of getCathegory(field)">{{category}}</option>
+                <option value="{{category}}" *ngFor="let category of getCategory(field)">{{category}}</option>
               </select>
+              <!--Для даты-->
               <input *ngIf="field==='driverLicenseDate'"
                      type="text"
                      size="9"
@@ -90,10 +97,12 @@
                      placement="left"
                      [bsConfig]="{ dateInputFormat: 'DD.MM.YY', containerClass:'theme-dark-blue' }"
                      bsDatepicker>
+              <!--Для опыта-->
               <input *ngIf="field==='experience'"
                      type="number"
                      class="custom-input"
                      formControlName="{{field}}">
+              <!--Для остального-->
               <input type="text"
                      popover="{{controls[field].popover}}"
                      triggers="keyup:blur"
@@ -101,6 +110,7 @@
                      class="custom-input"
                      formControlName="{{field}}"
                      *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate' && field!=='experience'">
+              <!--Кнопки утвердить и отменить-->
               <button class="bt bt-send"
                       (click)="edit(field)"
                       [disabled]="!driverForm.controls[field].dirty || driverForm.controls[field].invalid">

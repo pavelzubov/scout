@@ -11,16 +11,20 @@ export class BaseService {
   public list: DriverList;
 
   constructor(private http: HttpClient) {
+    // При загрузке делаем объект из json
     this.getListFromJson().subscribe(res => {
       this.list = res;
     });
   }
 
   getListFromJson(): Observable<any> {
+    // Берет данные из json
     return this.http.get('/assets/data.json');
   }
 
   getList(): Observable<DriverList> {
+    // Если объект с данными существует, то возвращаем его
+    // если нет, то создаем его
     return from(new Promise((resolve, reject) => {
       if (this.list) {
         resolve(this.list);
@@ -38,6 +42,8 @@ export class BaseService {
   }
 
   getItem(id: number): Observable<Driver> {
+    // Если объект с данными существует, то по нему ищем водителя
+    // если нет, то сначала загружаем данные
     return from(new Promise((resolve, reject) => {
       if (this.list) {
         // Немного имитации серверной логики
@@ -62,7 +68,7 @@ export class BaseService {
 
   updateItem(driver: Driver): Observable<any> {
     return from(new Promise((resolve, reject) => {
-      // Еще немного имитации серверной логики
+      // Еще немного имитации серверной логики.
       // Проходим по полям. Если поле изменено
       // то проверяем, можно его изменять
       const changingDriverId = this.list.DriverList.findIndex(item => item.id.value === driver.id.value);
