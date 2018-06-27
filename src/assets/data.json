@@ -7,12 +7,12 @@
         "canRead": true
       },
       "name": {
-        "value": "Василий Иванович Лебедев",
+        "value": "Том Леонидович Круз",
         "canWrite": false,
         "canRead": true
       },
       "avatar": {
-        "value": "https://pp.userapi.com/c629523/v629523692/12fb7/ph52WdGBsKo.jpg",
+        "value": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TomCruiseDec08MTV_cropped.jpg/230px-TomCruiseDec08MTV_cropped.jpg",
         "canWrite": false,
         "canRead": true
       },
@@ -223,7 +223,7 @@
         "canRead": true
       },
       "name": {
-        "value": "Уилл Аркадьевич Смитт",
+        "value": "Уилл Аркадьевич Смит",
         "canWrite": false,
         "canRead": true
       },
