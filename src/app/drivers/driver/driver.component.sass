@@ -1,19 +1,70 @@
+.cell
+  padding: 0.5rem
+
+.back
+  i
+    vertical-align: top
+
 .driver
+  .separator
+    border-top: 1px dashed darkgray
+  .placeholder, .bt, .custom-input
+    height: 1.8rem
+    line-height: 1.8rem
+  .custom-button
+    width: 100%
+  .custom-input, .cstom-select, .custom-button
+    padding: 0.3rem
+  .bt
+    cursor: pointer
+    vertical-align: top
+    &:disabled
+      opacity: 0.5
+      cursor: default
+    i
+      font-size: 0.9rem
+      font-weight: bold
+  .bt, .custom-input, .cstom-select, .custom-button
+    border: 0px solid gray
+    outline: 1px solid gray
+    margin-right: 0.6rem
+  .bt-send, .custom-button
+    color: white
+    background-color: blueviolet
+  .bt-cancel
+    color: black
+    background-color: white
+  .title
+    font-size: 2rem
   .avatar-container
-    width: 150px
-    height: 150px
+    width: 120px
+    height: 120px
     overflow: hidden
-    border-radius: 75px
+    border-radius: 60px
     .avatar
       width: 100%
   .line
     float: none
     .name
       float: left
+      b
+        vertical-align: middle
     .placeholder
       a
         text-decoration: none
         color: cornflowerblue
         border-bottom: 1px cornflowerblue dashed
+
 input.ng-invalid
-    outline: 2px solid brown
+  outline: 2px solid brown !important
+
+div
+  box-sizing: border-box
+  outline: 0px solid blue
+
+input[type='number']
+  width: 3rem
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button
+  -webkit-appearance: none
+  margin: 0

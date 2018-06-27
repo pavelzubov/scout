@@ -1,63 +1,116 @@
-<div class="error" *ngIf="error">
-  Такого водителя не существует. Вы будуте перенаправлены на страницу списка водителей
-</div>
-
-<div class="driver" *ngIf="!error">
-  <form *ngIf="driver" [formGroup]="driverForm">
-    <div class="avatar-container">
-      <img src="{{driver?.avatar.value}}" alt="" class="avatar">
+<div class="flex-container">
+  <div class="row back cell">
+    <div class="col-12"><a routerLink="../">
+      <i class="material-icons">keyboard_backspace</i> Назад</a>
     </div>
-    <div *ngFor="let field of controlsArray" class="line">
-      <ng-container *ngIf="driver[field].canRead" class="line">
-        <div class="name">{{controls[field].name}}
-        </div>
-        <div class="value">
-          <div class="add" *ngIf="!driver[field].value">
-            <button class="add-button" *ngIf="driver[field].canWrite" (click)="add('field')">Добавить</button>
-            <ng-container *ngIf="!driver[field].canWrite">---</ng-container>
-          </div>
-          <div class="placeholder" *ngIf="!controls[field].show">
-            <ng-container *ngIf="field==='driverLicenseDate'">
-              <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="showControl(field)">{{driver[field].value |
-                date: 'dd.MM.yy'}}</a>
-              <ng-container
-                *ngIf="!driver[field].canWrite">{{driver[field].value | date: 'dd.MM.yy'}}
-              </ng-container>
-            </ng-container>
+  </div>
+  <div class="error row" *ngIf="error">
+    <div class="col-12">Такого водителя не существует. Вы будуте перенаправлены на страницу списка водителей</div>
+  </div>
 
-            <ng-container *ngIf="typeOf(driver[field].value)==='object'">
-              <a [routerLink]="" *ngIf="driver[field].canWrite"
-                 (click)="showControl(field)">
-                <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
-                  <ng-container *ngIf="i!==driver[field].value.length-1">,</ng-container>
-                </ng-container>
-              </a>
-              <ng-container *ngIf="!driver[field].canWrite">
-                <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
-                  <ng-container *ngIf="i!==driver[field].value.length-1">,</ng-container>
-                </ng-container>
-              </ng-container>
-            </ng-container>
-
-            <ng-container *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate'">
-              <a [routerLink]="" (click)="showControl(field)" *ngIf="driver[field].canWrite">{{driver[field].value}}</a>
-              <ng-container *ngIf="!driver[field].canWrite">{{driver[field].value}}</ng-container>
-            </ng-container>
+  <div class="driver row justify-content-center" *ngIf="!error">
+    <form [formGroup]="driverForm" class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12 row justify-content-center" *ngIf="driver">
+      <div class="col-12 row justify-content-center">
+        <div class="cell">
+          <div class="avatar-container">
+            <img src="{{driver?.avatar.value}}" alt="" class="avatar">
           </div>
         </div>
-        <div class="controls" *ngIf="controls[field].show">
-          <select formControlName="{{field}}" *ngIf="typeOf(driver[field].value)==='object'" multiple>
-            <option value="{{category}}" *ngFor="let category of getCathegory()">{{category}}</option>
-          </select>
-          <input type="date" formControlName="{{field}}" *ngIf="field==='driverLicenseDate'">
-          <input type="text" formControlName="{{field}}"
-                 *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate'">
-          <button (click)="edit(field)"
-                  [disabled]="!driverForm.controls[field].dirty || driverForm.controls[field].invalid">ок
-          </button>
-          <button (click)="cancel(field)">х</button>
+      </div>
+      <div class="col-12 row text-center title">
+        <div class="cell col-12">
+          {{driver?.name.value}}
         </div>
-      </ng-container>
-    </div>
-  </form>
+      </div>
+      <div class="col-12 row justify-content-center">
+        <div class="cell col-4">
+          <button class="custom-button">Отчет</button>
+        </div>
+      </div>
+      <div *ngFor="let field of controlsArray" class="line col-12 row">
+
+        <!-- Добавялем пукнктируную линию перед номером в/у-->
+        <div class="cell col-12" *ngIf="field==='driverLicenseNumber'"><div class="separator"></div></div>
+        <ng-container *ngIf="driver[field].canRead">
+          <div class="cell name col-6"><b>{{controls[field].name}}</b>
+          </div>
+          <div class="cell values col-6">
+            <div class="value">
+              <div class="add" *ngIf="!driver[field].value && controls[field].show">
+                <button class="add-button form-control" *ngIf="driver[field].canWrite" (click)="add('field')">Добавить
+                </button>
+                <ng-container *ngIf="!driver[field].canWrite">-</ng-container>
+              </div>
+              <div class="placeholder" *ngIf="!controls[field].show">
+                <ng-container *ngIf="field==='driverLicenseDate'">
+                  <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="showControl(field)">{{driver[field].value |
+                    date: 'dd.MM.yy'}}</a>
+                  <ng-container
+                    *ngIf="!driver[field].canWrite">{{driver[field].value | date: 'dd.MM.yy'}}
+                  </ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="typeOf(driver[field].value)==='object'">
+                  <a [routerLink]="" *ngIf="driver[field].canWrite"
+                     (click)="showControl(field)">
+                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
+                      <ng-container *ngIf="i!==driver[field].value.length-1">,</ng-container>
+                    </ng-container>
+                  </a>
+                  <ng-container *ngIf="!driver[field].canWrite">
+                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
+                      <ng-container *ngIf="i!==driver[field].value.length-1">,</ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate'">
+                  <a [routerLink]="" (click)="showControl(field)"
+                     *ngIf="driver[field].canWrite">{{driver[field].value}}</a>
+                  <ng-container *ngIf="!driver[field].canWrite">{{driver[field].value}}</ng-container>
+                </ng-container>
+              </div>
+            </div>
+            <div class="controls " *ngIf="controls[field].show">
+              <select size="4" class="cstom-select" formControlName="{{field}}" *ngIf="typeOf(driver[field].value)==='object'"
+                      multiple>
+                <option value="{{category}}" *ngFor="let category of getCathegory()">{{category}}</option>
+              </select>
+              <input *ngIf="field==='driverLicenseDate'"
+                     type="text"
+                     size="9"
+                     formControlName="{{field}}"
+                     placeholder="Дата"
+                     class="custom-input"experience
+                     [minDate]="minDate"
+                     [bsConfig]="{ dateInputFormat: 'DD.MM.YY' }"
+                     bsDatepicker>
+              <input *ngIf="field==='experience'"
+                     type="number"
+                     class="custom-input"
+                     formControlName="{{field}}">
+              <input type="text"
+                     size="10"
+                     class="custom-input"
+                     formControlName="{{field}}"
+                     *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate' && field!=='experience'">
+              <button class="bt bt-send"
+                      (click)="edit(field)"
+                      [disabled]="!driverForm.controls[field].dirty || driverForm.controls[field].invalid">
+                <i class="material-icons">
+                  done
+                </i>
+              </button>
+              <button class="bt bt-cancel"
+                      (click)="cancel(field)">
+                <i class="material-icons">
+                  clear
+                </i>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </form>
+  </div>
 </div>
