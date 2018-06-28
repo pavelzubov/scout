@@ -27,10 +27,6 @@ export interface StringWrapper extends Wrapper {
   value: string;
 }
 
-export interface BooleanWrapper extends Wrapper {
-  value: boolean;
-}
-
 export interface NumberWrapper extends Wrapper {
   value: number;
 }
