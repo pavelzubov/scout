@@ -66,21 +66,37 @@ export class BaseService {
     }));
   }
 
+  updateField(driver: Driver, field: string, value: any): Observable<any> {
+    // Метод обновления отдельных полей
+    // проверяем можно ли обновлять поле
+    return from(new Promise((resolve, reject) => {
+      const changingDriverId = this.list.DriverList.findIndex(item => item.id.value === driver.id.value);
+      if (this.list.DriverList[changingDriverId][field].canWrite) {
+        this.list.DriverList[changingDriverId][field].value = value;
+        resolve('Successful');
+      } else {
+        reject('This field can`t change');
+      }
+    }));
+  }
+
   updateItem(driver: Driver): Observable<any> {
+    // Как правило в работе изменяют записи отсылая сразу всю полностью, а не отдельное поле
+    // потому как привычный вариант реализовал и этот метод
     return from(new Promise((resolve, reject) => {
       // Еще немного имитации серверной логики.
       // Проходим по полям. Если поле изменено
       // то проверяем, можно его изменять
       const changingDriverId = this.list.DriverList.findIndex(item => item.id.value === driver.id.value);
       for (const field in this.list[changingDriverId]) {
-        if (!this.list[changingDriverId].hasOwnProperty(field)) continue;
-        if (this.list[changingDriverId][field].value !== driver[field].value) {
-          if (!this.list[changingDriverId][field].canWrite) {
+        if (!this.list.DriverList[changingDriverId].hasOwnProperty(field)) continue;
+        if (this.list.DriverList[changingDriverId][field].value !== driver[field].value) {
+          if (!this.list.DriverList[changingDriverId][field].canWrite) {
             reject('This field can`t change');
           }
         }
       }
-      this.list[changingDriverId] = driver;
+      this.list.DriverList[changingDriverId] = driver;
       resolve('Successful');
     }));
   }

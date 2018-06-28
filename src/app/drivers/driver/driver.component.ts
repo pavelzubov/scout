@@ -102,12 +102,20 @@ export class DriverComponent implements OnInit {
     } else {
       this.driver[name].value = this.driverForm.controls[name].value;
     }
-    this.base.updateItem(this.driver).subscribe(res => {
+    this.base.updateField(this.driver, name, this.driver[name].value).subscribe(res => {
         console.log(res);
         this.driverForm.controls[name].reset();
         this.hideControl(name);
       }
     );
+    /*
+    // Вариант для работы с целой записью
+    this.base.updateItem(this.driver).subscribe(res => {
+        console.log(res);
+        this.driverForm.controls[name].reset();
+        this.hideControl(name);
+      }
+    );*/
   }
 
   cancel(name: string) {
