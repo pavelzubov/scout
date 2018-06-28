@@ -32,7 +32,7 @@
         "canRead": true
       },
       "generalContractor": {
-        "value": "Владимир Владимирович Путин",
+        "value": "Мэрия",
         "canWrite": false,
         "canRead": true
       },
@@ -42,7 +42,7 @@
         "canRead": true
       },
       "lineManager": {
-        "value": "Анатолий Борисович Чубайс",
+        "value": "Коди Ивановчи Ковингтон",
         "canWrite": false,
         "canRead": true
       },
