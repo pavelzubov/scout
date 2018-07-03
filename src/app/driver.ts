@@ -3,37 +3,26 @@ export interface DriverList {
 }
 
 export interface Driver {
-  id: NumberWrapper;
-  name: StringWrapper;
-  avatar: StringWrapper;
-  phone: StringWrapper;
-  post: StringWrapper;
-  department: StringWrapper;
-  generalContractor: StringWrapper;
-  company: StringWrapper;
-  lineManager: StringWrapper;
-  driverLicenseNumber: StringWrapper;
-  driverLicenseDate: StringWrapper;
-  experience: NumberWrapper;
-  driverAutoLicenseCategory: ArrayWrapper;
-  driverTractLicenseCategory: ArrayWrapper;
+  id: Wrapper<number>;
+  name: Wrapper<string>;
+  avatar: Wrapper<string>;
+  phone: Wrapper<string>;
+  post: Wrapper<string>;
+  department: Wrapper<string>;
+  generalContractor: Wrapper<string>;
+  company: Wrapper<string>;
+  lineManager: Wrapper<string>;
+  driverLicenseNumber: Wrapper<string>;
+  driverLicenseDate: Wrapper<string>;
+  experience: Wrapper<number>;
+  driverAutoLicenseCategory: Wrapper<Array<AutoCategory>>;
+  driverTractLicenseCategory: Wrapper<Array<TractorCategory>>;
 }
 
-export interface ArrayWrapper extends Wrapper {
-  value: Array<AutoCategory | TractorCategory>;
-}
-
-export interface StringWrapper extends Wrapper {
-  value: string;
-}
-
-export interface NumberWrapper extends Wrapper {
-  value: number;
-}
-
-export interface Wrapper {
+export interface Wrapper<T> {
   canWrite: boolean;
   canRead: boolean;
+  value: T;
 }
 
 export enum AutoCategory {
