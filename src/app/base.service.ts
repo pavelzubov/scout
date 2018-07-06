@@ -8,7 +8,7 @@ import {DriverList, Driver} from './driver';
   providedIn: 'root'
 })
 export class BaseService {
-  public list: DriverList;
+  private list: DriverList;
 
   constructor(private http: HttpClient) {
     // При загрузке делаем объект из json
@@ -17,12 +17,12 @@ export class BaseService {
     });
   }
 
-  getListFromJson(): Observable<any> {
+  private getListFromJson(): Observable<any> {
     // Берет данные из json
     return this.http.get('/assets/data.json');
   }
 
-  getList(): Observable<DriverList> {
+  public getList(): Observable<DriverList> {
     // Если объект с данными существует, то возвращаем его
     // если нет, то создаем его
     return from(new Promise((resolve, reject) => {
@@ -41,7 +41,7 @@ export class BaseService {
     );
   }
 
-  getItem(id: number): Observable<Driver> {
+  public getItem(id: number): Observable<Driver> {
     // Если объект с данными существует, то по нему ищем водителя
     // если нет, то сначала загружаем данные
     return from(new Promise((resolve, reject) => {
@@ -64,7 +64,7 @@ export class BaseService {
     }));
   }
 
-  updateField(driver: Driver, field: string, value: any): Observable<any> {
+  public updateField(driver: Driver, field: string, value: any): Observable<any> {
     // Метод обновления отдельных полей
     // проверяем можно ли обновлять поле
     return from(new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ export class BaseService {
     }));
   }
 
-  updateItem(driver: Driver): Observable<any> {
+  public updateItem(driver: Driver): Observable<any> {
     // Как правило в работе изменяют записи отсылая сразу всю полностью, а не отдельное поле
     // потому как привычный вариант реализовал и этот метод
     return from(new Promise((resolve, reject) => {
