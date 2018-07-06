@@ -54,11 +54,15 @@ export class BaseService {
           reject('Invalid id');
         }
       } else {
-        const list$ = this.getList(),
-          item$ = this.getItem(id);
-        list$.pipe(
-          switchMap(event => item$))
-          .subscribe(val => console.log(val));
+        this.getList().pipe(
+          switchMap(() => {
+            return this.getItem(id);
+          }))
+          .subscribe(res => {
+            resolve(<Driver>res);
+          }, error => {
+            reject(error);
+          });
       }
     }));
   }
