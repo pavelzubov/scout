@@ -48,68 +48,72 @@
               </div>
               <!--Текстовый вариант значения-->
               <div class="placeholder" *ngIf="!controls[field].show && driver[field].value">
-                <!--Для даты-->
-                <ng-container *ngIf="field==='driverLicenseDate'">
-                  <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="showControl(field)">{{driver[field].value |
-                    date: 'dd.MM.yy'}}</a>
-                  <ng-container
-                    *ngIf="!driver[field].canWrite">{{driver[field].value | date: 'dd.MM.yy'}}
-                  </ng-container>
-                </ng-container>
-                <!--Для категорий-->
-                <ng-container *ngIf="typeOf(driver[field].value)==='object'">
-                  <a [routerLink]="" *ngIf="driver[field].canWrite"
-                     (click)="showControl(field)">
-                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
-                      <ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
-                    </ng-container>
-                  </a>
-                  <ng-container *ngIf="!driver[field].canWrite">
-                    <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
-                      <ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
+                <ng-container [ngSwitch]="field">
+                  <!--Для даты-->
+                  <ng-container *ngSwitchCase="'driverLicenseDate'">
+                    <a [routerLink]="" *ngIf="driver[field].canWrite" (click)="showControl(field)">{{driver[field].value |
+                      date: 'dd.MM.yy'}}</a>
+                    <ng-container
+                      *ngIf="!driver[field].canWrite">{{driver[field].value | date: 'dd.MM.yy'}}
                     </ng-container>
                   </ng-container>
-                </ng-container>
-                <!--Для остального-->
-                <ng-container *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate'">
-                  <a [routerLink]="" (click)="showControl(field)"
-                     *ngIf="driver[field].canWrite">{{driver[field].value}}</a>
-                  <ng-container *ngIf="!driver[field].canWrite">{{driver[field].value}}</ng-container>
+                  <!--Для категорий-->
+                  <ng-container *ngSwitchCase="'driverAutoLicenseCategory' || 'driverTractLicenseCategory'">
+                    <a [routerLink]="" *ngIf="driver[field].canWrite"
+                       (click)="showControl(field)">
+                      <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
+                        <ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
+                      </ng-container>
+                    </a>
+                    <ng-container *ngIf="!driver[field].canWrite">
+                      <ng-container *ngFor="let category of driver[field].value; index as i">{{category}}
+                        <ng-container *ngIf="i!==driver[field].value.length-1">,&nbsp;</ng-container>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                  <!--Для остального-->
+                  <ng-container *ngSwitchDefault>
+                    <a [routerLink]="" (click)="showControl(field)"
+                       *ngIf="driver[field].canWrite">{{driver[field].value}}</a>
+                    <ng-container *ngIf="!driver[field].canWrite">{{driver[field].value}}</ng-container>
+                  </ng-container>
                 </ng-container>
               </div>
             </div>
             <!--Инпутный вариант значения-->
             <div class="controls " *ngIf="controls[field].show">
-              <!--Для категорий-->
-              <select size="4" class="cstom-select" formControlName="{{field}}"
-                      *ngIf="typeOf(driver[field].value)==='object'"
-                      multiple>
-                <option value="{{category}}" *ngFor="let category of getCategory(field)">{{category}}</option>
-              </select>
-              <!--Для даты-->
-              <input *ngIf="field==='driverLicenseDate'"
-                     type="text"
-                     size="9"
-                     formControlName="{{field}}"
-                     placeholder="Дата"
-                     class="custom-input"
-                     [minDate]="minDate"
-                     placement="left"
-                     [bsConfig]="{ dateInputFormat: 'DD.MM.YY', containerClass:'theme-dark-blue' }"
-                     bsDatepicker>
-              <!--Для опыта-->
-              <input *ngIf="field==='experience'"
-                     type="number"
-                     class="custom-input"
-                     formControlName="{{field}}">
-              <!--Для остального-->
-              <input type="text"
-                     popover="{{controls[field].popover}}"
-                     triggers="focus:blur"
-                     size="10"
-                     class="custom-input"
-                     formControlName="{{field}}"
-                     *ngIf="typeOf(driver[field].value)!=='object' && field!=='driverLicenseDate' && field!=='experience'">
+              <ng-container [ngSwitch]="field">
+                <!--Для категорий-->
+                <select *ngSwitchCase="'driverAutoLicenseCategory' || 'driverTractLicenseCategory'"
+                        size="4" class="cstom-select" formControlName="{{field}}"
+                        multiple>
+                  <option value="{{category}}" *ngFor="let category of getCategory(field)">{{category}}</option>
+                </select>
+                <!--Для даты-->
+                <input *ngSwitchCase="'driverLicenseDate'"
+                       type="text"
+                       size="9"
+                       formControlName="{{field}}"
+                       placeholder="Дата"
+                       class="custom-input"
+                       [minDate]="minDate"
+                       placement="left"
+                       [bsConfig]="{ dateInputFormat: 'DD.MM.YY', containerClass:'theme-dark-blue' }"
+                       bsDatepicker>
+                <!--Для опыта-->
+                <input *ngSwitchCase="'experience'"
+                       type="number"
+                       class="custom-input"
+                       formControlName="{{field}}">
+                <!--Для остального-->
+                <input *ngSwitchDefault
+                       type="text"
+                       popover="{{controls[field].popover}}"
+                       triggers="focus:blur"
+                       size="10"
+                       class="custom-input"
+                       formControlName="{{field}}">
+              </ng-container>
               <!--Кнопки утвердить и отменить-->
               <button class="bt bt-send"
                       (click)="edit(field)"
