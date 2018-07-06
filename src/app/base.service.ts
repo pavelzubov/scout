@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {from, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {from, Observable, pipe} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 import {DriverList, Driver} from './driver';
 
 @Injectable({
@@ -55,13 +55,11 @@ export class BaseService {
           reject('Invalid id');
         }
       } else {
-        this.getList().subscribe(res => {
-          this.getItem(id).subscribe(resl => {
-            resolve(<Driver>resl);
-          }, error => {
-            reject(error);
-          });
-        });
+        const list$ = this.getList(),
+          item$ = this.getItem(id);
+        list$.pipe(
+          switchMap(event => item$))
+          .subscribe(val => console.log(val));
       }
     }));
   }
