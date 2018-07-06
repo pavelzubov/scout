@@ -66,7 +66,7 @@ export class DriverComponent implements OnInit, OnDestroy {
             Validators.minLength(10),
             Validators.maxLength(10)]),
           'driverLicenseDate': new FormControl(this.driver.driverLicenseDate.value, [Validators.required]),
-          'experience': new FormControl(this.driver.experience.value, [Validators.required]),
+          'experience': new FormControl(this.driver.experience.value, [Validators.required, Validators.pattern('[1-9]{1,3}')]),
           'driverAutoLicenseCategory': new FormControl(this.driver.driverAutoLicenseCategory.value, [Validators.required]),
           'driverTractLicenseCategory': new FormControl(this.driver.driverTractLicenseCategory.value, [Validators.required])
         });
