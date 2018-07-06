@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {from, Observable, pipe} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {map, switchMap, merge} from 'rxjs/operators';
 import {DriverList, Driver} from './driver';
 
 @Injectable({
@@ -25,20 +26,18 @@ export class BaseService {
   public getList(): Observable<DriverList> {
     // Если объект с данными существует, то возвращаем его
     // если нет, то создаем его
-    return from(new Promise((resolve, reject) => {
-      if (this.list) {
-        resolve(this.list);
-      } else {
-        this.getListFromJson().subscribe(res => {
+    if (this.list) {
+      return of(this.list).pipe(
+        map(res => <DriverList>res)
+      );
+    } else {
+      return this.getListFromJson().pipe(
+        map(res => {
           this.list = res;
-          resolve(this.list);
-        }, err => {
-          reject(err);
-        });
-      }
-    })).pipe(
-      map(res => <DriverList>res)
-    );
+          return <DriverList>res;
+        })
+      );
+    }
   }
 
   public getItem(id: number): Observable<Driver> {
