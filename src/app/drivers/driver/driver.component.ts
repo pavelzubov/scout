@@ -38,7 +38,9 @@ export class DriverComponent implements OnInit, OnDestroy {
   constructor(public activateRoute: ActivatedRoute,
               public router: Router,
               public base: BaseService) {
-    this.id = this.activateRoute.snapshot.params['id'];
+    this.activateRoute.params.subscribe(params => {
+      this.id = params['id'];
+    });
     // Для того чтобы пройтись по полям
     // и сделать форму перегоняем ключи controls в массив
     this.controlsArray = Object.keys(this.controls);
