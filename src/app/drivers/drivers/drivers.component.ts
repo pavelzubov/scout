@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BaseService} from '../../base.service';
 import {Driver} from '../../driver';
 
@@ -7,16 +7,21 @@ import {Driver} from '../../driver';
   templateUrl: './drivers.component.html',
   styleUrls: ['./drivers.component.sass']
 })
-export class DriversComponent implements OnInit {
+export class DriversComponent implements OnInit, OnDestroy {
   public drivers: Driver[];
+  private sub;
 
   constructor(public base: BaseService) {
   }
 
   ngOnInit() {
-    this.base.getList().subscribe(res => {
+    this.sub = this.base.getList().subscribe(res => {
       this.drivers = res.DriverList;
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

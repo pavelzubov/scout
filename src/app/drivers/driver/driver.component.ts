@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../base.service';
 import {Driver, AutoCategory, TractorCategory} from '../../driver';
@@ -9,7 +9,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
   templateUrl: './driver.component.html',
   styleUrls: ['./driver.component.sass']
 })
-export class DriverComponent implements OnInit {
+export class DriverComponent implements OnInit, OnDestroy {
   public id: number;
   public driver: Driver;
   public error = false;
@@ -33,6 +33,7 @@ export class DriverComponent implements OnInit {
   public controlsArray: string[];
   public driverForm: FormGroup;
   public minDate = new Date();
+  private sub;
 
   constructor(public activateRoute: ActivatedRoute,
               public router: Router,
@@ -46,7 +47,7 @@ export class DriverComponent implements OnInit {
   ngOnInit() {
     // Забираем данные по водителю
     // и после загрузки выставляем значения в реактивную форму
-    this.base.getItem(+this.id).subscribe(
+    this.sub = this.base.getItem(+this.id).subscribe(
       res => {
         console.log(res);
         this.driver = res;
@@ -76,6 +77,10 @@ export class DriverComponent implements OnInit {
         this.error = true;
         setTimeout(() => this.router.navigate(['']), 5 * 1000);
       });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   showControl(name: string) {
